@@ -1,13 +1,19 @@
 ## Furrl Assignment
 
-This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary]([https://web.furrl.in/vibeList?vibe=NightFlea](https://docs.google.com/document/d/10UarXEmRwRmouyHga0_QuZa5bJIdxgiPQpfbBOyOYtc/edit))
+This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary(https://docs.google.com/document/d/10UarXEmRwRmouyHga0_QuZa5bJIdxgiPQpfbBOyOYtc/edit#heading=h.tmji0vc6irbk)
 
-## Technoloy used
+## Live Demo 
+
+[Furrl](https://furrl-assignment-by-twinkal.vercel.app/)
+
+## Technology used
 
 - Next.js
 - Typescript
 - Tailwind CSS
 - Deployment to [Vercel](https://vercel.com/)
+
+## How to install this project locally?
 
 ```bash
 git clone https://github.com/twinkalp10/furrl.git
@@ -37,9 +43,6 @@ npm run dev
 - External packages introduce dependencies into your project. This means that your code relies on them
 - I wanted to develop this project with just coding and not with external supports
 
-### Additional Information
+## Additional Information
 
 ![ScreenShot of Furrl](/screenshot/FurrlScreenShot.png)
-
-## Live Demo 
-[Furrl](https://furrl-assignment-by-twinkal.vercel.app/)
