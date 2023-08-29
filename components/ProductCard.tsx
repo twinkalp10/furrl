@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export interface Product {
@@ -5,6 +6,7 @@ export interface Product {
   brandName: string;
   title: string;
   price: string;
+  id: string;
 }
 
 interface Image {
@@ -17,16 +19,18 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <div className="text-xs">
-      <img
-        src={product.images[0].src}
-        alt={product.title}
-        className="w-full h-40 flex items-center justify-center object-cover"
-      />
-      <p className="mt-1">{product.brandName}</p>
-      <p className="truncate font-semibold mt-1">{product.title}</p>
-      <p className="mt-1">Rs. {product.price}</p>
-    </div>
+    <Link href={`/products/${product.id}`}>
+      <div className="text-xs">
+        <img
+          src={product.images[0].src}
+          alt={product.title}
+          className="w-full h-40 flex items-center justify-center object-cover"
+        />
+        <p className="mt-1">{product.brandName}</p>
+        <p className="truncate font-semibold mt-1">{product.title}</p>
+        <p className="mt-1">Rs. {product.price}</p>
+      </div>
+    </Link>
   );
 };
 

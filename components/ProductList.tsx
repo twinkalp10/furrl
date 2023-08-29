@@ -4,8 +4,14 @@ import ProductCard, { Product } from "./ProductCard";
 
 const tabItems = ["All", "Accessories", "Home", "Apparel", "Beauty", "Kids"];
 
+interface VibeData {
+  profileImageUrl: string;
+  totalStoredProductIdsCount: number;
+}
+
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [vibe, setVibe] = useState<VibeData>();
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const loadingRef = useRef(null);
@@ -26,6 +32,7 @@ const ProductList = () => {
         ...prevProducts,
         ...response.data.productData,
       ]);
+      setVibe(response.data);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
@@ -60,7 +67,13 @@ const ProductList = () => {
 
   return (
     <>
-      <Header />
+      <div>
+        <img
+          src={`${vibe?.profileImageUrl}`}
+          alt="underverse"
+          className="w-full max-h-52"
+        />
+      </div>
       <div className="m-2 rounded-lg p-1 font-light bg-gray-200 text-gray-800">
         <div className="flex justify-between items-center px-10">
           <div className="py-2.5 px-3 text-xs bg-white rounded-lg">
@@ -69,24 +82,30 @@ const ProductList = () => {
           <div className="py-2.5 px-3 text-xs rounded-lg">Collections</div>
         </div>
       </div>
-      <div className="m-4 flex flex-col gap-4">
-        <p className="text-sm italic font-light text-gray-800 w-full">
-          192 products
-        </p>
 
-        <div className="w-full overflow-x-auto">
-          <ul className="inline-flex gap-2">
-            {tabItems.map((item, index) => (
-              <li
-                key={index}
-                className="border rounded-full px-4 py-1.5 text-sm font-light"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+      <section className="sticky top-10 z-50 bg-white py-0.5">
+        <div className="m-2 flex flex-col gap-4">
+          <p className="text-sm italic font-light text-gray-800 w-full">
+            {vibe?.totalStoredProductIdsCount} products
+          </p>
+
+          <div className="w-full overflow-scroll product_list">
+            <ul className="inline-flex gap-2">
+              {tabItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={`${
+                    index === 0 && "bg-indigo-600 text-white"
+                  } border rounded-full px-4 py-1.5 text-sm font-light`}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </section>
+
       <div className="grid grid-cols-2 gap-2 p-0.5">
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
@@ -100,20 +119,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-const Header = () => {
-  return (
-    <div className="relative">
-      <div className="relative">
-        <img
-          src="/underverse.png"
-          alt="underverse"
-          className="w-full max-h-60"
-        />
-      </div>
-      <p className="absolute text-white bottom-10 left-[35%] z-50 font-semibold italic text-2xl">
-        #NightFlea
-      </p>
-    </div>
-  );
-};
