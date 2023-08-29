@@ -10,10 +10,6 @@ const ProductList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const loadingRef = useRef(null);
 
-  useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
-
   const fetchData = async (page: number) => {
     try {
       setIsLoading(true);
@@ -38,9 +34,12 @@ const ProductList = () => {
 
   const fetchMoreData = async () => {
     if (isLoading) return;
-
     setCurrentPage((prevPage) => prevPage + 1);
   };
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
