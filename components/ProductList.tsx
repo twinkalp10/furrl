@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ProductCard, { Product } from "./ProductCard";
@@ -13,64 +12,52 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, []);
+  }, [currentPage]);
 
   const fetchData = async (page: number) => {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        `https://api.furrl.in/api/v1/vibe/getVibeRelate?visitId=2e3fb8fe-5867-4725-bd1c-fd934e635e3b&page=${page}`,
-        { vibe: "#NightFlea" }
+        `https://api.furrl.in/api/v1/vibe/getVibeRelate?visitId=2e3fb8fe-5867-4725-bd1c-fd934e635e3b`,
+        { vibe: "#NightFlea" },
+        {
+          params: {
+            page: page,
+          },
+        }
       );
       setProducts((prevProducts) => [
         ...prevProducts,
         ...response.data.productData,
       ]);
-      setCurrentPage((prevPage) => prevPage + 1);
-
-      console.log(products);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
     setIsLoading(false);
-  };
-
-  const handleInteraction = (entries: any) => {
-    const [entry] = entries;
-    if (entry.isIntersecting && !isLoading) {
-      fetchMoreData();
-    }
   };
 
   const fetchMoreData = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.post(
-        `https://api.furrl.in/api/v1/vibe/getVibeRelate?visitId=2e3fb8fe-5867-4725-bd1c-fd934e635e3b&page=${
-          currentPage + 1
-        }`,
-        { vibe: "#NightFlea" }
-      );
-      setProducts((prevProducts) => [
-        ...prevProducts,
-        ...response.data.productData,
-      ]);
-      setCurrentPage((prevPage) => prevPage + 1);
+    if (isLoading) return;
 
-      console.log(products);
-    } catch (error) {
-      console.log("error fetching data: ", error);
-    }
-    setIsLoading(false);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleInteraction);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          fetchMoreData();
+        }
+      },
+      {
+        threshold: 1,
+      }
+    );
     if (loadingRef.current) {
       observer.observe(loadingRef.current);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [loadingRef]);
 
   return (
     <>
@@ -101,10 +88,13 @@ const ProductList = () => {
           </ul>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 p-0.5">
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}
+      </div>
+      <div ref={loadingRef} className="text-center py-4">
+        {isLoading && <p>Loading...</p>}
       </div>
     </>
   );
