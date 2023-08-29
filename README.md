@@ -1,6 +1,6 @@
 ## Furrl Assignment
 
-This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary(https://docs.google.com/document/d/10UarXEmRwRmouyHga0_QuZa5bJIdxgiPQpfbBOyOYtc/edit#heading=h.tmji0vc6irbk)
+This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary](https://docs.google.com/document/d/10UarXEmRwRmouyHga0_QuZa5bJIdxgiPQpfbBOyOYtc/edit#heading=h.tmji0vc6irbk)
 
 ## Live Demo 
 
