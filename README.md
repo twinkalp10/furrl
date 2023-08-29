@@ -1,6 +1,6 @@
 ## Furrl Assignment
 
-This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary](https://web.furrl.in/vibeList?vibe=NightFlea)
+This Project demonstrate the assignment completed for furrl's interview. Here is [link of assignment questionary]([https://web.furrl.in/vibeList?vibe=NightFlea](https://docs.google.com/document/d/10UarXEmRwRmouyHga0_QuZa5bJIdxgiPQpfbBOyOYtc/edit))
 
 ## Technoloy used
 
@@ -31,6 +31,11 @@ npm run dev
 - Clicking on card opens new page with product details
 - Clicking on WishList icon open new page with [wishlist items](https://web.furrl.in/wishlist)
 - Clicking on Cart icon open new page with [cart items](https://web.furrl.in/wishlist)
+
+## Why I haven't used external packages?
+
+- External packages introduce dependencies into your project. This means that your code relies on them
+- I wanted to develop this project with just coding and not with external supports
 
 ### Additional Information
 
