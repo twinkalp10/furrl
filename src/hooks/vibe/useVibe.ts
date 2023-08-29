@@ -16,9 +16,13 @@ const useVibe = (): UseVibeReturnType => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const fetchVibeData = async (page: number) => {
+    setIsLoading(true)
     try {
-      const vibeData = await getVibesData(page)
-      setVibe(vibeData)
+      const { productData, totalStoredProductIdsCount, vibeImageUrl } = await getVibesData(page)
+      setVibe((oldVibeData) => {
+        if (!oldVibeData) return { productData, totalStoredProductIdsCount, vibeImageUrl }
+        return ({ totalStoredProductIdsCount, vibeImageUrl, productData: [...oldVibeData.productData, ...productData] })
+      })
       setIsLoading(false)
     } catch (error) {
       setError(error as string)
