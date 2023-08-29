@@ -41,5 +41,5 @@ npm run dev
 
 ![ScreenShot of Furrl](/screenshot/FurrlScreenShot.png)
 
-## Line Demo 
+## Live Demo 
 [Furrl](https://furrl-assignment.vercel.app/)
