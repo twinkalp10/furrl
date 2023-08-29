@@ -42,4 +42,4 @@ npm run dev
 ![ScreenShot of Furrl](/screenshot/FurrlScreenShot.png)
 
 ## Line Demo 
-[Furrl}(https://furrl-assignment.vercel.app/)
+[Furrl](https://furrl-assignment.vercel.app/)
