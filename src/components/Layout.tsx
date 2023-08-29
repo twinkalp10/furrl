@@ -1,19 +1,15 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "./Navbar";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
-  return (
-    <>
-      <div className="max-w-[23rem] mx-auto">
-        <Navbar />
-        {children}
-      </div>
-    </>
-  );
-};
+const Layout = ({ children }: LayoutProps) => (
+  <div className="max-w-sm mx-auto">
+    <Navbar />
+    {children}
+  </div>
+);
 
 export default Layout;

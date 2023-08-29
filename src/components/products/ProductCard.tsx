@@ -1,22 +1,10 @@
+import { Product } from "@/models/vibe/vibe.interface";
 import Link from "next/link";
 import React from "react";
-
-export interface Product {
-  images: Image[];
-  brandName: string;
-  title: string;
-  price: string;
-  id: string;
-}
-
-interface Image {
-  src: string;
-}
 
 interface ProductCardProps {
   product: Product;
 }
-
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link href={`/products/${product.id}`}>
